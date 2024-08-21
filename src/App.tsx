@@ -12,9 +12,9 @@ const CanvasComponent: React.FC = () => {
   const radiusValue = 550;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [points, setPoints] = useState<Point[]>([
-    { id:1, x: 100, y: 250, radius: radiusValue, color: '#FF0000' },
-    { id:2, x: 250, y: 250, radius: radiusValue, color: '#00FF00' },
-    { id:3, x: 400, y: 250, radius: radiusValue, color: '#0000FF' },
+    { id:1, x: Math.random() * 300 + 50, y: Math.random() * 100 + 50, radius: radiusValue, color: '#FF0000' },
+    { id:2, x: Math.random() * 300 + 150, y: Math.random() * 100 + 150, radius: radiusValue, color: '#00FF00' },
+    { id:3, x: Math.random() * 300 + 250, y: Math.random() * 100 + 300, radius: radiusValue, color: '#0000FF' },
   ]);
   const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
 
@@ -122,18 +122,12 @@ const CanvasComponent: React.FC = () => {
         const image = canvas.toDataURL('image/png');
         const link = document.createElement('a');
         link.href = image;
-        link.download = 'canvas-image.png';
+        link.download = 'ino-image-gradient.png';
         link.click();
         draw(ctx); // Redesenhar com os pontos clicáveis
       }
     }
   };
-  const resizeCanvas = () => {
-
-  };
-
-  // resize the canvas to fill browser window dynamically
-  window.addEventListener('resize', resizeCanvas, false);
 
   const changeColor = (id: number, color: string) => {
     setPoints(points.map(point => 
